@@ -15,6 +15,12 @@ jobs:
       - name: Log in to DockerHub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: docker build -t shadowfax-flask-app .
+        
       - name: Push Docker image
         run: |
           docker tag shadowfax-flask-app ${{ secrets.DOCKER_USERNAME }}/shadowfax-flask-app:latest

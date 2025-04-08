@@ -1,4 +1,4 @@
-name: Test and Build Flask App
+name: Test Flask App
 
 on:
   push:
@@ -25,10 +25,4 @@ jobs:
 
       - name: Run unit tests
         run: pytest
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Docker Image
-        run: docker build -t shadowfax-flask-app .
 
