@@ -31,3 +31,4 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t shadowfax-flask-app .
+
