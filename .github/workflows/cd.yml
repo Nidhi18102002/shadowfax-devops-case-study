@@ -27,7 +27,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/shadowfax-flask-app:latest
      
       - name: Deploy to EC2 via SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
