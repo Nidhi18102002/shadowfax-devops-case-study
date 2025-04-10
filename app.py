@@ -8,6 +8,9 @@ def hello():
 @app.post("/official-welcome")
 def welcome():
     return "Hello this Nidhi Devops intern!"
+@app.get("/checking")
+def check():
+    return"Deployment check,deployment is working"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
