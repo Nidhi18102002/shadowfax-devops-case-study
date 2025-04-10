@@ -1,11 +1,14 @@
 name: Deploy to production
 
 on:
-  push:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Test Flask App"]  # name of your cy.yml workflow
+    types:
+      - completed
 
 jobs:
-  test-and-build:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -20,12 +23,12 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t shadowfax-flask-app .
-        
+
       - name: Push Docker image
         run: |
           docker tag shadowfax-flask-app ${{ secrets.DOCKER_USERNAME }}/shadowfax-flask-app:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/shadowfax-flask-app:latest
-     
+
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@master
         with:

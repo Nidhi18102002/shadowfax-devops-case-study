@@ -3,3 +3,4 @@ shadowfax-terraform-task/.terraform/
 shadowfax-terraform-task/.terraform.lock.hcl
 shadowfax-terraform-task/.terraform.lock.hcl
 terraform.tfstate
+.pytest_cache
